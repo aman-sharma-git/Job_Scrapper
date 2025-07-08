@@ -1,0 +1,14 @@
+
+services:
+  - type: cron
+    name: daily-job-notifier
+    schedule: "0 14 * * *"  # Runs daily at 8 PM IST (14:00 UTC)
+    envVars:
+      - key: NOTION_TOKEN
+        sync: false
+      - key: NOTION_DATABASE_ID
+        sync: false
+    plan: free
+    runtime: python
+    buildCommand: ""
+    startCommand: "python main.py"
