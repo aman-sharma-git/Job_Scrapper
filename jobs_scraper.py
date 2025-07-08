@@ -1,8 +1,13 @@
+
 import os
 import requests
 
 def get_job_listings(limit=20):
-    SERP_API_KEY = os.getenv(7108af40d4ee89599e5acb4d538d042769e5b990d1a967c33421595fd9de8276)
+    SERP_API_KEY = os.getenv(8edd20da55ce2e23e3b857d6381969e2179bc0a15a9533e09f7d85acd284fc23)
+    if not SERP_API_KEY:
+        print("❌ SERP_API_KEY not found in environment variables.")
+        return []
+
     query = "Entry-level Data Analyst OR MIS Executive site:linkedin.com/jobs OR site:wellfound.com OR site:internshala.com OR site:workindia.in OR site:indeed.com OR site:glassdoor.com"
 
     url = "https://serpapi.com/search"
