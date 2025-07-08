@@ -11,9 +11,15 @@ def get_job_listings(limit=20):
     url = f"https://www.google.com/search?q={query.replace(' ', '+')}&num=30"
     headers = {"User-Agent": "Mozilla/5.0"}
     res = requests.get(url, headers=headers)
-    soup = BeautifulSoup(res.text, "html.parser")
 
+    print("🔍 Response Status:", res.status_code)
+    if "Our systems have detected unusual traffic" in res.text:
+        print("⚠️ Google is blocking this bot with a CAPTCHA. Try using SerpAPI or Bing API.")
+        return []
+
+    soup = BeautifulSoup(res.text, "html.parser")
     links = []
+
     for a in soup.find_all("a", href=True):
         href = a["href"]
         if any(site in href for site in [
@@ -25,6 +31,10 @@ def get_job_listings(limit=20):
                 links.append(link)
         if len(links) >= limit:
             break
+
+    print("🔗 Found links:")
+    for link in links:
+        print(link)
 
     jobs = [{"title": "Data Analyst Role", "company": "Startup", "link": link} for link in links]
     return jobs
