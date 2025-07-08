@@ -3,7 +3,7 @@ import os
 import requests
 
 def get_job_listings(limit=20):
-    SERP_API_KEY = os.getenv(8edd20da55ce2e23e3b857d6381969e2179bc0a15a9533e09f7d85acd284fc23)
+    SERP_API_KEY = os.getenv("8edd20da55ce2e23e3b857d6381969e2179bc0a15a9533e09f7d85acd284fc23")
     if not SERP_API_KEY:
         print("❌ SERP_API_KEY not found in environment variables.")
         return []
