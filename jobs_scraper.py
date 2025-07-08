@@ -4,7 +4,8 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 
 def get_job_listings(limit=15):
-    query = "Entry-level Data Analyst OR MIS Executive site:linkedin.com/jobs OR site:wellfound.com"
+    query = "Entry-level Data Analyst OR MIS Executive site:linkedin.com/jobs OR site:wellfound.com OR site:internshala.com OR site:workindia.in OR site:indeed.com OR site:glassdoor.com
+"
     url = f"https://www.google.com/search?q={query.replace(' ', '+')}&num=25"
     headers = {"User-Agent": "Mozilla/5.0"}
     res = requests.get(url, headers=headers)
